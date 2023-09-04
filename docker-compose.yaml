@@ -1,0 +1,138 @@
+# Full Docker compose file for the micro-service, the monolitic app and jenkins
+
+version: "3"
+
+volumes:
+  owncloud:
+  mysql:
+  redis:
+  flask-app:
+  jenkins:
+
+# Définir le type de réseau, le sous-masque de réseau et la config de l'adresse IP
+networks:
+  owncloud_full_app:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 174.20.0.0/16
+
+#volumes:
+ # files:
+  #  driver: local
+ # mysql:
+  #  driver: local
+  #redis:
+   # driver: local
+
+services:
+
+# Conteneur pour mon application monolite OwnCloud avec la base de données MariaDB et le logiciel d'observabilité Redis
+  owncloud:
+    image: owncloud/server:${OWNCLOUD_VERSION}
+    container_name: owncloud_server-v2
+    restart: always
+    ports:
+      - ${HTTP_PORT}:8080
+    depends_on:
+      - mariadb
+      - redis
+    environment:
+      - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}
+      - OWNCLOUD_TRUSTED_DOMAINS=${OWNCLOUD_TRUSTED_DOMAINS}
+      - OWNCLOUD_DB_TYPE=mysql
+      - OWNCLOUD_DB_NAME=owncloud
+      - OWNCLOUD_DB_USERNAME=owncloud
+      - OWNCLOUD_DB_PASSWORD=owncloud
+      - OWNCLOUD_DB_HOST=mariadb
+      - OWNCLOUD_ADMIN_USERNAME=${ADMIN_USERNAME}
+      - OWNCLOUD_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - OWNCLOUD_MYSQL_UTF8MB4=true
+      - OWNCLOUD_REDIS_ENABLED=true
+      - OWNCLOUD_REDIS_HOST=redis
+    healthcheck: 
+      test: ["CMD", "/usr/bin/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - owncloud:/mnt/data
+    networks:  # Créer d'un reseau docker en amont pour l'interconnexion des containers entre eux
+      owncloud_full_app:  # Nom du Docker network
+        ipv4_address: 174.20.0.11  # Attribution de l'adresse IPv4 pour mon container owncloud (app monolite)
+
+# Base de données MariaDB
+  mariadb:
+    image: mariadb:10.11 # minimum required ownCloud version is 10.9
+    container_name: owncloud_mariadb-v2
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=owncloud
+      - MYSQL_USER=owncloud
+      - MYSQL_PASSWORD=owncloud
+      - MYSQL_DATABASE=owncloud
+      - MARIADB_AUTO_UPGRADE=1
+    command: ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-u", "root", "--password=owncloud"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      owncloud_full_app: 
+        ipv4_address: 174.20.0.12
+
+# Outil de stockage de données en mémoire
+  redis:
+    image: redis:6
+    container_name: owncloud_redis-v2
+    restart: always
+    command: ["--databases", "1"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - redis:/data
+    networks:
+      owncloud_full_app: 
+        ipv4_address: 174.20.0.13
+
+# Conteneur pour mon micro-service Owncloud crée à partir de mon app.py ains que des dépendances 
+  flask-app:
+    build: 
+      context: ./my_app
+    container_name: flask-app
+    ports:
+      - "5002:5000"  # Port pour accéder à l'application Flask
+#    depends_on:
+ #     - owncloud
+    #environment:
+     # - DATABASE_URI=${DATABASE_URI}
+      #- OWNCLOUD_API_URL=${OWNCLOUD_API_URL}
+      #- ADMIN_CREDENTIALS=${ADMIN_CREDENTIALS}
+    restart: always
+    volumes:
+      - flask-app:/var/app
+    networks:
+      owncloud_full_app: 
+        ipv4_address: 174.20.0.14
+
+# Conteneur pour mon jenkins qui va intégrer notre code depuis le Github pour la mise en place de pipelines CI/CD 
+  jenkins:
+    image: jenkins_for_microservice_v2:latest
+    #build:
+      #context: ./jenkins_microservice
+    container_name: Jenkins_microservice
+    ports: 
+      - "8081:8080" 
+    restart: always
+    volumes:
+      - jenkins:/var/jenkins
+    networks:
+      owncloud_full_app: 
+        ipv4_address: 174.20.0.15
