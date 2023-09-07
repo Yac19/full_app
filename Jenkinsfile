@@ -12,8 +12,8 @@ pipeline {
             steps {
                 echo 'Analyzing the files on my repo GitHub on the 1st stage..'
                 sh 'if [ -d "Microservice" ]; then rm -rf Microservice/; fi'
-                sh 'git clone https://github.com/Yac19/microservice-app.git'
-                sh 'cd Microservice'
+                sh 'git clone https://github.com/Yac19/full_app.git'
+                sh 'cd full_app'
                 sh 'ls'
             }
         }
