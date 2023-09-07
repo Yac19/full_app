@@ -109,7 +109,7 @@ services:
 # Conteneur pour mon micro-service Owncloud crée à partir de mon app.py ains que des dépendances 
   flask-app:
     build: 
-      context: ./app
+      context: ./owncloud_pipeline1
     container_name: flask-app
     ports:
       - "5002:5000"  # Port pour accéder à l'application Flask
