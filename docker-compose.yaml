@@ -51,7 +51,7 @@ services:
       - OWNCLOUD_MYSQL_UTF8MB4=true
       - OWNCLOUD_REDIS_ENABLED=true
       - OWNCLOUD_REDIS_HOST=redis
-      - OWNCLOUD_VERSION=latest                            # not secured !
+      - OWNCLOUD_VERSION=${OWNCLOUD_VERSION}                            # not secured !
       - OWNCLOUD_DOMAIN=173.18.0.3:8080                    # not secured !
       - OWNCLOUD_TRUSTED_DOMAINS=173.18.0.3,173.18.0.6     # not secured !
       - ADMIN_USERNAME=admin                               # not secured !
