@@ -20,19 +20,16 @@ pipeline {
         stage('Build the Docker images of the microservice and jenkins') {
             steps {
                 echo 'Initiating the contruction of the App image with the app.py....' 
-                sh 'if [ -f Dockerfile_flask_app ];'
-                sh 'then echo "Docker file found ! Initiating the construction of the microservice image !"'
+                sh 'if [ -f Dockerfile_flask_app ]; then echo "Docker file found ! Initiating the construction of the microservice image !"; fi'
                 sh "docker build -t flask-app -f Dockerfile_flask_app ."
-                sh 'if [ -f Dockerfile ];'
-                sh 'then echo "Docker file found ! Initiating the build of Jenkins image !"'
+                sh 'if [ -f Dockerfile ]; then echo "Docker file found ! Initiating the build of Jenkins image !"; fi'
                 sh "docker build -t jenkins_microservice -f Dockerfile ."
             }
         }
         stage('Test') {
             steps {
                 echo 'Creation of the containers through pre-created docker images...'
-                sh 'if [ -f docker-compose.yaml ];'
-                sh 'then echo "Docker compose found ! Initiating the build of al the images for Owncloud app ! "'
+                sh 'if [ -f docker-compose.yaml ]; then echo "Docker compose found ! Initiating the build of al the images for Owncloud app ! "; fi'
                 sh "docker-compose up -d"
             }
         }
