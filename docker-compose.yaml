@@ -51,12 +51,12 @@ services:
       - OWNCLOUD_MYSQL_UTF8MB4=true
       - OWNCLOUD_REDIS_ENABLED=true
       - OWNCLOUD_REDIS_HOST=redis
-      - OWNCLOUD_VERSION=${OWNCLOUD_VERSION}                            # not secured !
-      - OWNCLOUD_DOMAIN=173.18.0.3:8080                    # not secured !
-      - OWNCLOUD_TRUSTED_DOMAINS=173.18.0.3,173.18.0.6     # not secured !
-      - ADMIN_USERNAME=admin                               # not secured !
-      - ADMIN_PASSWORD=admin                               # not secured !
-      - HTTP_PORT=8080                                     # not secured !
+      - OWNCLOUD_VERSION=${OWNCLOUD_VERSION}                        # not secured !
+      - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}                          # not secured !
+      - OWNCLOUD_TRUSTED_DOMAINS=${OWNCLOUD_TRUSTED_DOMAINS}        # not secured !
+      - ADMIN_USERNAME=${ADMIN_USERNAME}                            # not secured !
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}                            # not secured !
+      - HTTP_PORT=${HTTP_PORT}                                      # not secured !
     env_file:
       - .env
     healthcheck: 
