@@ -8,18 +8,10 @@ pipeline {
     agent any
 
     stages {
-        stage("Clone the content of my Project repo on GitHub") {
-            steps {
-                echo 'Analyzing the files on my repo GitHub on the 1st stage..'
-                sh 'if [ -d "Microservice" ]; then rm -rf Microservice/; fi'
-                sh 'git clone https://github.com/Yac19/full_app.git'
-                sh 'cd full_app'
-                sh 'ls'
-            }
-        }
         stage('Build the Docker images of the microservice and jenkins') {
             steps {
-                echo 'Initiating the contruction of the App image with the app.py....' 
+                echo 'Initiating the contruction of the App image with the app.py....'
+                sh 'ls'
                 sh 'if [ -f Dockerfile_flask_app ]; then echo "Docker file found ! Initiating the construction of the microservice image !"; fi'
                 sh "docker build -t flask-app -f Dockerfile_flask_app ."
                 sh 'if [ -f Dockerfile ]; then echo "Docker file found ! Initiating the build of Jenkins image !"; fi'
