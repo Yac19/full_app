@@ -125,18 +125,3 @@ services:
     networks:
       owncloud_full_app: 
         ipv4_address: 174.20.0.14
-
-# Conteneur pour mon jenkins qui va intégrer notre code depuis le Github pour la mise en place de pipelines CI/CD 
-  jenkins:
-    image: jenkins_for_microservice_v2:latest
-    #build:
-      #context: ./jenkins_microservice
-    container_name: Jenkins_microservice
-    ports: 
-      - "8081:8080" 
-    restart: always
-    volumes:
-      - jenkins:/var/jenkins
-    networks:
-      owncloud_full_app: 
-        ipv4_address: 174.20.0.15
