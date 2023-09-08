@@ -5,6 +5,7 @@ volumes:
   mysql:
   redis:
   flask-app:
+  nginx:
 
 # Définir le type de réseau, le sous-masque de réseau et la config de l'adresse IP
 networks:
@@ -111,4 +112,18 @@ services:
       - "443:443"
     depends_on:
       - flask-app
-    
+
+# Web Application firewall (Fortinet)
+  fortiweb:
+    image: 'fortinet/fortimanager'
+    container_name: 'fortiweb'
+    restart: always
+    environment:
+      - WAF_ADMIN_PASSWORD=password
+    volumes:
+      - fortiweb-data:/data
+      - fortiweb-log:/var/log 
+    ports:
+      - "8443:43"
+    networks: 
+      owncloud_micro2:
