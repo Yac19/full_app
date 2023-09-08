@@ -19,12 +19,35 @@ pipeline {
                 sh "docker build -t jenkins_microservice -f Dockerfile ."
             }
         }
-        stage('Test') {
+        stage('Run') {
             steps {
                 echo 'Creation of the containers through pre-created docker images...'
                 sh 'if [ -f docker-compose.yaml ]; then echo "Docker compose found ! Initiating the build of al the images for Owncloud app ! "; fi'
                 sh "docker-compose up -d"
             }
+        }
+        stage('Performance tests') {
+            steps {
+                script {
+                    // Téléchargez JMeter (si nécessaire) et décompressez-le
+                    echo 'Downloading JMeter app for performance tests... Please be patient'
+                    sh 'wget -q https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.4.1.tgz'
+                    sh 'tar -xzf apache-jmeter-5.4.1.tgz'
+
+                    // Création d'un dossier pour les tests
+                    sh 'mkdir perf_test'
+
+                    // Exécutez le test JMeter
+                    echo 'Executing JMEter app'
+                    
+                    sh './apache-jmeter-5.4.1/bin/jmeter -n -t perf_test/test-plan.jmx -l results.jtl'
+
+                    // Générez un rapport HTML à partir des résultats
+                    echo 'Generating an HTML log'
+                    sh './apache-jmeter-5.4.1/bin/jmeter -g results.jtl -o report/'
+
+                    // Archivage du rapport
+                    archiveArtifacts 'report/**'
         }
     }
 }
