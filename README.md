@@ -36,7 +36,8 @@ Pour réaliser ce projet on a installé sur la machine :
 
 # L'architecture
 Voici l'architecture choisi pour mettre en place notre projet:
-  * ![Diagramme_Project_B_](https://github.com/Yac19/full_app/assets/133639660/c567d347-d5f3-4c01-9d95-d70f9497d18a)
+  * ![Diagramme_Project_B_-1](https://github.com/Yac19/full_app/assets/133639660/f2e3c603-b56d-4133-90d2-e943cfd637a6)
+
 
 
 # L’application monolithique 
