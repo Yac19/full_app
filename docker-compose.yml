@@ -93,7 +93,7 @@ services:
     container-name: flask-app-micro2
     dockerfile: Dockerfile-flask
     ports:
-      -"5002:5000"      # Port pour accéder à l'appli Flask
+      - "5002:5000"      # Port pour accéder à l'appli Flask
     restart: always
     volumes:
       - flask-app:/var/app
