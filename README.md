@@ -63,10 +63,9 @@ Le pipeline CI/CD permet l'intégration et le déploiement continus:
 - Intégration continue avec GitHub.
 - Build des images Docker
 - Tests automatisés
-- Déploiement continu sur des environnements de DEV, TEST, PROD
-- Déploiement.
+- Déploiement continu.
 
-Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins.
+Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
 
 
 		PLACER LES CAPTURES D'ÉCRAN ICI
