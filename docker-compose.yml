@@ -36,8 +36,8 @@ services:
       - ADMIN_USERNAME=${ADMIN_USERNAME}                            # not secured !
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}                            # not secured !
       - HTTP_PORT=${HTTP_PORT}                                      # not secured !
-    env_file:
-      - .env
+    #env_file:
+      #- .env
     healthcheck: 
       test: ["CMD", "/usr/bin/healthcheck"]
       interval: 30s
