@@ -11,6 +11,9 @@
   * sécuriser les accès
   * mise en place d’une stack d’observabilité
 
+* Pour la mise en place de ce projet nous avons choisi OwnCloud: un logiciel libre que offre une plateforme de services de stockage et partage de fichiers et d'applications diverses en ligne.
+
+
 # Contributeurs
 * Haythem
 * Jorge
@@ -37,7 +40,7 @@ Voici l'architecture choisi pour mettre en place notre projet:
 
 
 # L’application monolithique 
-  * Pour la mise en place de ce projet nous avons choisi OwnCloud: un logiciel libre que offre une plateforme de services de stockage et partage de fichiers et d'applications diverses en ligne. Cette application monolithique est composée par trois conteneurs Docker: OnwCloud_server, Mariadb, Redis.
+  * L’application monolithique OwnCloud est composée par trois conteneurs Docker: OnwCloud_server, Mariadb, Redis.
   * Nous avons transformé cette application monolithique en rajoutant deux micro-services. Cependant, nous n'avons pas développé la partie front-end pour chaque micro-service.
  
 
@@ -66,10 +69,6 @@ Déploiement.
 
 
 		PLACER LES CAPTURES D'ÉCRAN ICI
-
-
-
-
 
 
 
