@@ -6,6 +6,8 @@ volumes:
   redis:
   flask-app:
   nginx:
+  fortiweb-data:
+  fortiweb-log:
 
 # Définir le type de réseau, le sous-masque de réseau et la config de l'adresse IP
 networks:
