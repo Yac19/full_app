@@ -12,11 +12,11 @@ volumes:
 # Définir le type de réseau, le sous-masque de réseau et la config de l'adresse IP
 networks:
   owncloud_full_app:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 174.20.0.0/16
+    #driver: bridge
+    #ipam:
+      #driver: default
+      #config:
+        #- subnet: 174.20.0.0/16
 
 #volumes:
  # files:
@@ -64,7 +64,7 @@ services:
       - owncloud:/mnt/data
     networks:  # Créer d'un reseau docker en amont pour l'interconnexion des containers entre eux
       owncloud_full_app:  # Nom du Docker network
-        ipv4_address: 174.20.0.11  # Attribution de l'adresse IPv4 pour mon container owncloud (app monolite)
+        #ipv4_address: 174.20.0.11  # Attribution de l'adresse IPv4 pour mon container owncloud (app monolite)
 
 # Base de données MariaDB
   mariadb:
@@ -86,8 +86,7 @@ services:
     volumes:
       - mysql:/var/lib/mysql
     networks:
-      owncloud_full_app: 
-        ipv4_address: 174.20.0.12
+      owncloud_full_app:
 
 # Outil de stockage de données en mémoire
   redis:
@@ -103,14 +102,13 @@ services:
     volumes:
       - redis:/data
     networks:
-      owncloud_full_app: 
-        ipv4_address: 174.20.0.13
+      owncloud_full_app:
 
 # Conteneur pour mon micro-service Owncloud crée à partir de mon app.py ains que des dépendances 
   flask-app:
     build: 
       context: ./
-    container_name: flask-app
+    container_name: app_micro2
     ports:
       - "5002:5000"  # Port pour accéder à l'application Flask
 #    depends_on:
@@ -123,5 +121,4 @@ services:
     volumes:
       - flask-app:/var/app
     networks:
-      owncloud_full_app: 
-        ipv4_address: 174.20.0.14
+      owncloud_full_app:
