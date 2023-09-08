@@ -1,13 +1,106 @@
 version: '3'
+
+volumes:
+  owncloud:
+  mysql:
+  redis:
+  flask-app:
+
+# Définir le type de réseau, le sous-masque de réseau et la config de l'adresse IP
+networks:
+  owncloud_full_app:
+
 services:
+
+  owncloud:
+    image: owncloud/server:${OWNCLOUD_VERSION}
+    container_name: owncloud_server-v2
+    restart: always
+    ports:
+      - ${HTTP_PORT}:8080
+    depends_on:
+      - mariadb
+      - redis
+    environment:
+      - OWNCLOUD_DOMAIN=${OWNCLOUD_DOMAIN}
+      - OWNCLOUD_TRUSTED_DOMAINS=${OWNCLOUD_TRUSTED_DOMAINS}
+      - OWNCLOUD_DB_TYPE=mysql
+      - OWNCLOUD_DB_NAME=owncloud
+      - OWNCLOUD_DB_USERNAME=owncloud
+      - OWNCLOUD_DB_PASSWORD=owncloud
+      - OWNCLOUD_DB_HOST=mariadb
+      - OWNCLOUD_MYSQL_UTF8MB4=true
+      - OWNCLOUD_REDIS_ENABLED=true
+      - OWNCLOUD_REDIS_HOST=redis
+      - OWNCLOUD_VERSION=${OWNCLOUD_VERSION}                        # not secured !
+      - ADMIN_USERNAME=${ADMIN_USERNAME}                            # not secured !
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}                            # not secured !
+      - HTTP_PORT=${HTTP_PORT}                                      # not secured !
+    env_file:
+      - .env
+    healthcheck: 
+      test: ["CMD", "/usr/bin/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - owncloud:/mnt/data
+    networks:                    # Créer d'un reseau docker en amont pour l'interconnexion des containers entre eux
+      owncloud_micro2:           # Nom du Docker network
+
+# Base de données MariaDB
+  mariadb:
+    image: mariadb:10.11 # minimum required ownCloud version is 10.9
+    container_name: owncloud_mariadb-v2
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=owncloud
+      - MYSQL_USER=owncloud
+      - MYSQL_PASSWORD=owncloud
+      - MYSQL_DATABASE=owncloud
+      - MARIADB_AUTO_UPGRADE=1
+    command: ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-u", "root", "--password=owncloud"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      owncloud_micro2: 
+
+# Outil de stockage de données en mémoire
+  redis:
+    image: redis:6
+    container_name: owncloud_redis-v2
+    restart: always
+    command: ["--databases", "1"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - redis:/data
+    networks:
+      owncloud_micro2: 
+
+# Microservice Owncloud 
   flask-app:
     build:
       context: .
+    container-name: flask-app-micro2
       dockerfile: Dockerfile-flask
-    expose:
-      - "5000"  # Exposez le port 5000 du conteneur Flask pour Nginx
+    ports:
+      -"5002:5000"      # Port pour accéder à l'appli Flask
+    restart: always
+    volumes:
+      - flask-app:/var/app
+    networks:
+      owncloud_micro2:
 
-
+# Reverse-Proxy
   nginx:
     build:
       context: .
