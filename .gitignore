@@ -1,4 +1,6 @@
 # created by virtualenv automatically
 config.ini
-secret_key.txt
 config.py
+config_test.py
+.env
+generate_secret_key.py

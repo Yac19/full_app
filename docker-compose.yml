@@ -1,0 +1,21 @@
+version: '3'
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-flask
+    expose:
+      - "5000"  # Exposez le port 5000 du conteneur Flask pour Nginx
+
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - "80:80"
+      - "88:88"
+      - "443:443"
+    depends_on:
+      - flask-app
+    

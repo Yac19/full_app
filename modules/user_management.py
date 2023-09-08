@@ -2,7 +2,7 @@
 
 from flask import request, jsonify
 import requests
-from modules.owncloud_api import user_exists_in_owncloud
+from modules.owncloud_api import delete_owncloud_user, user_exists_in_owncloud
 from modules.error_handling import handle_registration_error
 from modules.models import db, User, user_exists
 import base64
@@ -72,7 +72,13 @@ def delete_user(user_id):
     if user is None:
         return jsonify({"error": "Utilisateur non trouvé."}), 404
 
+    # Supprimer l'utilisateur de votre base de données
     db.session.delete(user)
     db.session.commit()
+
+    # Appeler la fonction pour supprimer l'utilisateur d'OwnCloud
+    response_owncloud = delete_owncloud_user(user.username)
+    if not response_owncloud.ok:
+        return jsonify({"error": f"Échec de la suppression de l'utilisateur {user.username} d'OwnCloud. Code de statut : {response_owncloud.status_code}"}), 500
 
     return jsonify({"message": "Utilisateur supprimé avec succès !"}), 200
