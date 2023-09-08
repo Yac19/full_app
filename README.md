@@ -58,7 +58,7 @@ Voici l'architecture choisi pour mettre en place notre projet:
 
 # Pipeline CI/CD
 
-* Le pipeline CI/CD permet l'intégration et le déploiement continus:
+Le pipeline CI/CD permet l'intégration et le déploiement continus:
 
 - Intégration continue avec GitHub.
 - Build des images Docker
@@ -66,7 +66,7 @@ Voici l'architecture choisi pour mettre en place notre projet:
 - Déploiement continu sur des environnements de DEV, TEST, PROD
 - Déploiement.
 
-* Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins.
+Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins.
 
 
 		PLACER LES CAPTURES D'ÉCRAN ICI
