@@ -11,7 +11,7 @@
   * sécuriser les accès
   * mise en place d’une stack d’observabilité
 
-Pour la mise en place de ce projet nous avons choisi OwnCloud: un logiciel libre que offre une plateforme de services de stockage et partage de fichiers et d'applications diverses en ligne.
+* Pour la mise en place de ce projet nous avons choisi OwnCloud: un logiciel libre que offre une plateforme de services de stockage et partage de fichiers et d'applications diverses en ligne.
 
 
 # Contributeurs
@@ -36,8 +36,7 @@ Pour réaliser ce projet on a installé sur la machine :
 
 # L'architecture
 Voici l'architecture choisi pour mettre en place notre projet:
-  * ![Diagramme_Project_B_-1](https://github.com/Yac19/full_app/assets/133639660/f2e3c603-b56d-4133-90d2-e943cfd637a6)
-
+  * ![Diagramme_Project_B_](https://github.com/Yac19/full_app/assets/133639660/c567d347-d5f3-4c01-9d95-d70f9497d18a)
 
 
 # L’application monolithique 
@@ -58,24 +57,40 @@ Voici l'architecture choisi pour mettre en place notre projet:
 
 # Pipeline CI/CD
 
-Le pipeline CI/CD permet l'intégration et le déploiement continus:
+* Le pipeline CI/CD permet l'intégration et le déploiement continus:
 
-- Intégration continue avec GitHub.
-- Build des images Docker
-- Tests automatisés
-- Déploiement continu.
+Intégration continue avec GitHub.
+Build des images Docker
+Tests automatisés
+Déploiement continu sur des environnements
+Déploiement.
 
-Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
-
-
-		PLACER LES CAPTURES D'ÉCRAN ICI
+* Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
 
 
+# Feuille de route suivi
+* Découpage de l'application monolithique
+* Choix de la technologie : Flask (Python)
+* Mise en place de l'environnement de développement
+	Configuration de l'environnement de développement local avec une base de données Sqlite
+* Développement de la API avec des fonctionnalités
+	Configuration de l'environnement (Installation des dépendances, Configuration de la base de données)
+	Connexion au monolithe (Intégration de l'API OwnCloud dans les micro-services)
+	Définition du modèle de données (Modélisation de la commande dans SQLAlchemy) .
+	Implémentation des routes.
+	Gestion des erreurs .
+	Optimisation et sécurité (Gestion des taux d'appels avec Flask-Limiter ; utilisation des variables d'environnement).
+* Tests
+* Déploiement avec Docker
+* Intégration et le déploiement continus via Jenkins
+
+		(METTRE DES CAPTURES D'ÉCRAN SUR CHAQUE ÉLÉMENT)
 
 
-
-
-
-
-
-
+# Installation du projet
+* Créer un dossier dans lequel on installera le projet
+* On clone le repo
+* On active le logiciel Docker
+* Sur un terminal PowerShell on se place dedans le répertoire où se trouve le fichier « docker-compise.yaml « 
+* Sur le terminal PowerShell on execute la commande « docker-compose up »
+* 
