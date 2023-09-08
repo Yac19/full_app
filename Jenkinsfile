@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     environment {
-            OWNCLOUD_VERSION=credentials(OWNCLOUD_VERSION)
-            OWNCLOUD_DOMAIN=credentials(OWNCLOUD_DOMAIN)
-            OWNCLOUD_TRUSTED_DOMAINS=credentials(OWNCLOUD_TRUSTED_DOMAINS)
-            ADMIN_USERNAME=credentials(ADMIN_USERNAME)
-            ADMIN_PASSWORD=credentials(ADMIN_PASSWORD)
-            HTTP_PORT=credentials(HTTP_PORT)
+            OWNCLOUD_VERSION=credentials('OWNCLOUD_VERSION')
+            OWNCLOUD_DOMAIN=credentials('OWNCLOUD_DOMAIN')
+            OWNCLOUD_TRUSTED_DOMAINS=credentials('OWNCLOUD_TRUSTED_DOMAINS')
+            ADMIN_USERNAME=credentials('ADMIN_USERNAME')
+            ADMIN_PASSWORD=credentials('ADMIN_PASSWORD')
+            HTTP_PORT=credentials('HTTP_PORT')
         }
     
     stages {
