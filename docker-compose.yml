@@ -90,8 +90,8 @@ services:
   flask-app:
     build:
       context: .
+      dockerfile: Dockerfile-flask
     container_name: flask-app
-    dockerfile: Dockerfile-flask
     ports:
       - "5002:5000"      # Port pour accéder à l'appli Flask
     restart: always
