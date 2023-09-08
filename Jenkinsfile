@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         environment {
             OWNCLOUD_VERSION = credentials(OWNCLOUD_VERSION)
             OWNCLOUD_DOMAIN = credentials(OWNCLOUD_DOMAIN)
