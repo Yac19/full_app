@@ -29,16 +29,17 @@ pipeline {
                 script {
                     // Téléchargez JMeter (si nécessaire) et décompressez-le
                     echo 'Downloading JMeter app for performance tests... Please be patient'
-                    sh 'wget -q http://downloads.apache.org/jmeter/binaries/apache-jmeter-5.4.1.tgz'
-                    sh 'tar -xzf apache-jmeter-5.4.1.tgz'
+                    // Download and install JMeter
+                    sh 'wget http://mirror.reverse.net/pub/apache//jmeter/binaries/apache-jmeter-3.3.tgz && wget https://www.apache.org/dist/jmeter/binaries/apache-jmeter-3.3.tgz.asc && wget -O - https://www.apache.org/dist/jmeter/KEYS |gpg --import && gpg --verify apache-jmeter-3.3.tgz.asc && tar -zxf apache-jmeter-3.3.tgz && rm apache-jmeter-3.3.tgz'
+                    // Run load test and create dashboard with stats and graphs
+                    sh './apache-jmeter-3.3/bin/jmeter -n -t load-test-plan.jmx -l ../reports/html/jmeterreport2.jtl -e -o /dashboard'
 
                     // Création d'un dossier pour les tests
                     sh 'mkdir perf_test'
 
                     // Exécutez le test JMeter
                     echo 'Executing JMEter app'
-                    
-                    sh './apache-jmeter-5.4.1/bin/jmeter -n -t perf_test/test-plan.jmx -l results.jtl'
+                    // sh './apache-jmeter-5.4.1/bin/jmeter -n -t perf_test/test-plan.jmx -l results.jtl'
 
                     // Générez un rapport HTML à partir des résultats
                     echo 'Generating an HTML log'
