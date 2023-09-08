@@ -90,7 +90,7 @@ services:
   flask-app:
     build:
       context: .
-    container-name: flask-app-micro2
+    container_name: flask-app
     dockerfile: Dockerfile-flask
     ports:
       - "5002:5000"      # Port pour accéder à l'appli Flask
