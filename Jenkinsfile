@@ -2,23 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build the Docker images of the microservice and Nginx') {
             steps {
-                echo 'Building du Microservice..'
-                // Build and run Docker container
-                //sh 'docker build -t my-test-image .'
-                //sh 'docker run my-test-image'
+                sh 'whoami'
+                sh 'ls'
+                echo 'Initiating the contruction of the App image with the app.py...'
+                sh 'if [ -f Dockerfile-flask ]; then echo "Docker file found ! Initiating the construction of the microservice image !"; fi'
+                sh "docker build -t flask-app -f Dockerfile-flask ."
+                echo 'Initiating the contruction of the Nginx image'
+                sh 'if [ -f Dockerfile-nginx ]; then echo "Docker file found ! Initiating the construction of the microservice image !"; fi'
+                sh "docker build -t nginx -f Dockerfile-nginx ."        
             }
         }
-        stage('Test') {
+        stage('Run the containers') {
             steps {
-                echo 'Testing des fonction ..'
-                
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying sur le serveur....'
+                echo 'Creation of the containers through pre-created docker images...'
+                sh 'if [ -f docker-compose.yml ]; then echo "Docker compose found ! Initiating the build of al the images for Owncloud app ! "; fi'
+                sh "docker-compose up -d"
             }
         }
     }
