@@ -15,8 +15,6 @@ pipeline {
                 sh 'ls'
                 sh 'if [ -f Dockerfile_flask_app ]; then echo "Docker file found ! Initiating the construction of the microservice image !"; fi'
                 sh "docker build -t flask-app -f Dockerfile_flask_app ."
-                sh 'if [ -f Dockerfile ]; then echo "Docker file found ! Initiating the build of Jenkins image !"; fi'
-                sh "docker build -t jenkins_microservice -f Dockerfile ."
             }
         }
         stage('Run') {
