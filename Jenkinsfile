@@ -48,6 +48,8 @@ pipeline {
 
                     // Archivage du rapport
                     archiveArtifacts 'report/**'
+                }
+            }
         }
     }
 }
