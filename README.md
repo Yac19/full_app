@@ -11,7 +11,7 @@
   * sécuriser les accès
   * mise en place d’une stack d’observabilité
 
-* Pour la mise en place de ce projet nous avons choisi OwnCloud: un logiciel libre que offre une plateforme de services de stockage et partage de fichiers et d'applications diverses en ligne.
+Pour la mise en place de ce projet nous avons choisi OwnCloud: un logiciel libre que offre une plateforme de services de stockage et partage de fichiers et d'applications diverses en ligne.
 
 
 # Contributeurs
