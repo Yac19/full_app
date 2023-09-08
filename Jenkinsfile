@@ -10,8 +10,7 @@ pipeline {
             ADMIN_USERNAME = credentials(ADMIN_USERNAME)
             ADMIN_PASSWORD = credentials(ADMIN_PASSWORD)
             HTTP_PORT = credentials(HTTP_PORT)
-            
-        
+        }
         stage('Build the Docker images of the microservice and Nginx') {
             steps {
                 sh 'whoami'
