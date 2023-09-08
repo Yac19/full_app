@@ -29,7 +29,7 @@ pipeline {
                 script {
                     // Téléchargez JMeter (si nécessaire) et décompressez-le
                     echo 'Downloading JMeter app for performance tests... Please be patient'
-                    sh 'wget -q https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.4.1.tgz'
+                    sh 'wget -q http://downloads.apache.org/jmeter/binaries/apache-jmeter-5.4.1.tgz'
                     sh 'tar -xzf apache-jmeter-5.4.1.tgz'
 
                     // Création d'un dossier pour les tests
