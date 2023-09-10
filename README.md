@@ -15,9 +15,9 @@
 
 
 # Contributeurs
-* Haythem
-* Jorge
-* Yacine
+* [Yacine BEN HAMIDA](https://github.com/Yac19)
+* [Jorge DOS SANTOS](https://github.com/Jrgds)
+* [Haythem CHAABANI](https://github.com/HaythemCH69)
 
 
 # Pré-requis
