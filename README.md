@@ -32,9 +32,9 @@ Pour la mise en place de ce projet, nous avions choisi [OwnCloud](https://ownclo
 
 ##### Choix des microservices :
 
-Concernant les micro-services, on en a choisi 2: La gestion des utilisateurs et la gestion des mots de passe.  
-  * Micro-service Édition de Mot de Passe
-  * Serveur Nginx
+Concernant les micro-services, on en a choisi 2: La gestion des utilisateurs (création des utilisateurs) et la gestion des mots de passe (modification de mot de passe).
+
+##### Serveur Nginx: 
 
 
 # L'architecture
