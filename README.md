@@ -24,9 +24,9 @@ Pour réaliser ce projet on a installé sur la machine :
 * **[Docker](https://www.docker.com/)**, une plateforme de **conteneurisation** qui permet d'emballer une application et ses dépendances dans un conteneur léger, isolé et portable. 
 
 
-# Les éléments constitutifs de notre Projet
+### Les éléments constitutifs de notre Projet
 
-### Choix de l'application monolite: 
+## Choix de l'application monolite: 
 
 Pour la mise en place de ce projet, nous avions choisi [OwnCloud](https://owncloud.com/): une plateforme d'hébergement open source proposant des services de stockages et de partages de fichiers en ligne assorti d'une plateforme de collaboration qui s'appuie la suite bureautique OnlyOffice. Elle offre une alternative autogérée aux services de stockage en ligne tels que Dropbox, Google Drive et Microsoft OneDrive, permettant aux utilisateurs de conserver le contrôle total sur leurs données tout en bénéficiant de fonctionnalités de partage et de collaboration.
 Pour implémenter notre projet nous avons suivi la documentation présenté sur le site https://doc.owncloud.com/server/next/ , consulté pendant les mois de août et septembre 2023.
@@ -36,7 +36,7 @@ Pour implémenter notre projet nous avons suivi la documentation présenté sur 
 * Nous avions transformé cette application monolithique en rajoutant les deux micro-services avec la création d'un fichier en python "app.py". Nous n'avions pas développé la partie front-end pour chaque micro-service.
 
 
-### Les microservices :
+## Les microservices :
 
 Concernant les micro-services, on en a choisi créer 2: 
 
@@ -46,26 +46,26 @@ Concernant les micro-services, on en a choisi créer 2:
 2- La gestion des mots de passe (modification de mot de passe pour chaque utilisateur).
 
 
-### Serveur Nginx:
+## Serveur Nginx:
 Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’utilisé comme **reverse proxy** (ou proxy inverse) afin de rediriger le traffic : soit vers l’application monolithique, soit vers les micro-services. Dans ce conteneur on a configurer le framework fail2ban. L’accès à l’instance OwnCloud est configuré pour se réaliser via HTTP, car selon la documentation ( https://doc.owncloud.com/server/10.13/admin_manual/installation/docker/ ) l'accès ne fonctionne qu'avec http, pas avec https. 
 
 
-### Le pare feu
+## Le pare feu
 * On a pas mis le pare feu sur dans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de Docker ( https://docs-docker-com.translate.goog/network/packet-filtering-firewalls/?_x_tr_sl=auto&_x_tr_tl=fr&_x_tr_hl=fr&_x_tr_pto=wapp ) c’est pas recommandable activer le pare feu UFW. 
 
 
 
-# L'architecture
+### L'architecture
 Voici l'architecture choisi pour mettre en place notre projet:
   * ![Diagramme_Project_B_](https://github.com/Yac19/full_app/blob/dev/Diagramme__ProjectB_.jpg)
 
 
-# Code source du micro-service
+### Code source du micro-service
 
 #### A REMPLIR PAR JORGE
 
 
-# Pipeline CI/CD
+### Pipeline CI/CD
 
 * Le pipeline CI/CD réalisé via Jenkins a permi l'intégration et le déploiement continu de notre application publié sur GitHub:
 
@@ -78,7 +78,7 @@ Déploiement.
 * Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
 
 
-# Feuille de route suivi
+### Feuille de route suivi
 * Découpage de l'application monolithique
 * Choix de la technologie : Flask (Python)
 * Mise en place de l'environnement de développement
@@ -97,7 +97,7 @@ Déploiement.
 		(METTRE DES CAPTURES D'ÉCRAN SUR CHAQUE ÉLÉMENT)
 
 
-# Installation du projet
+### Installation du projet
 * Créer un dossier dans lequel on installera le projet
 * On clone le repo
 * On active le logiciel Docker
