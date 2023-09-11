@@ -29,6 +29,7 @@ Pour réaliser ce projet on a installé sur la machine :
 ### Choix de l'application monolite: 
 
 Pour la mise en place de ce projet, nous avions choisi [OwnCloud](https://owncloud.com/): une plateforme d'hébergement open source proposant des services de stockages et de partages de fichiers en ligne assorti d'une plateforme de collaboration qui s'appuie la suite bureautique OnlyOffice. Elle offre une alternative autogérée aux services de stockage en ligne tels que Dropbox, Google Drive et Microsoft OneDrive, permettant aux utilisateurs de conserver le contrôle total sur leurs données tout en bénéficiant de fonctionnalités de partage et de collaboration.
+Pour implémenter notre projet nous avons suivi la documentation présenté sur le site https://doc.owncloud.com/server/next/ , consulté pendant les mois de août et septembre 2023.
 
 ### Choix des microservices :
 
@@ -40,7 +41,7 @@ Concernant les micro-services, on en a choisi 2:
 
 
 ### Serveur Nginx:
-Pour accéder à nôtres micro-services et à l’application monolithique on a mis en place un conteneur Docker avec nginx. Dans ce conteneur on a configurer le framework fail2ban.
+Pour accéder à nôtres micro-services et à l’application monolithique on a mis en place un conteneur Docker avec nginx. Dans ce conteneur on a configurer le framework fail2ban. L’accès à l’instance OwnCloud est configuré pour se réaliser via HTTP, car selon la documentation ( https://doc.owncloud.com/server/10.13/admin_manual/installation/docker/ ) l'accès ne fonctionne qu'avec http, pas avec https. 
 
 
 # L'architecture
