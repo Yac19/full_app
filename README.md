@@ -11,7 +11,7 @@
   * sécuriser les accès
   * mise en place d’une stack d’observabilité
 
-* Pour la mise en place de ce projet nous avons choisi OwnCloud: un logiciel libre que offre une plateforme de services de stockage et partage de fichiers et d'applications diverses en ligne.
+* Pour la mise en place de ce projet nous avons choisi OwnCloud: une plateforme d'hébergement open source proposant des services de stockages et de partages de fichiers en ligne assorti d'une plateforme de collaboration qui s'appuie la suite bureautique OnlyOffice. Similaire aux services publiques (Dropbox, Google Drive), celle-ci se distingue par le fait qu'elle puisse accorder à ses utilisateurs la création de leur propre serveur de stockage de fichiers personnel ou d'entreprise 
 
 
 # Contributeurs
