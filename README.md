@@ -52,7 +52,7 @@ Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’
 
 # L'architecture
 Voici l'architecture choisi pour mettre en place notre projet:
-  * ![Diagramme_Project_B_](https://github.com/Yac19/full_app/assets/133639660/c567d347-d5f3-4c01-9d95-d70f9497d18a)
+  * ![Diagramme_Project_B_](https://github.com/Yac19/full_app/blob/dev/Diagramme__ProjectB_.jpg)
 
 
 # L’application monolithique 
