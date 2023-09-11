@@ -26,15 +26,15 @@ Pour réaliser ce projet on a installé sur la machine :
 
 # Les éléments constitutifs de notre Projet
 
-##### Choix de l'application monomite: 
+### Choix de l'application monomite: 
 
 Pour la mise en place de ce projet, nous avions choisi [OwnCloud](https://owncloud.com/): une plateforme d'hébergement open source proposant des services de stockages et de partages de fichiers en ligne assorti d'une plateforme de collaboration qui s'appuie la suite bureautique OnlyOffice. Elle offre une alternative autogérée aux services de stockage en ligne tels que Dropbox, Google Drive et Microsoft OneDrive, permettant aux utilisateurs de conserver le contrôle total sur leurs données tout en bénéficiant de fonctionnalités de partage et de collaboration.
 
-##### Choix des microservices :
+### Choix des microservices :
 
 Concernant les micro-services, on en a choisi 2: La gestion des utilisateurs (création des utilisateurs) et la gestion des mots de passe (modification de mot de passe).
 
-##### Serveur Nginx: 
+### Serveur Nginx: 
 
 
 # L'architecture
