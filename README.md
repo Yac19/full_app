@@ -32,7 +32,12 @@ Pour la mise en place de ce projet, nous avions choisi [OwnCloud](https://ownclo
 
 ### Choix des microservices :
 
-Concernant les micro-services, on en a choisi 2: La gestion des utilisateurs (création des utilisateurs) et la gestion des mots de passe (modification de mot de passe).
+Concernant les micro-services, on en a choisi 2: 
+
+1- La gestion des utilisateurs (création des utilisateurs) permettant la création d'un nouvel utilisateur, la suppression ainsi que la mise-à-jour d'un utilisateur.
+
+2- La gestion des mots de passe (modification de mot de passe pour chaque utilisateur).
+
 
 ### Serveur Nginx: A REMPLIR PAR JORGE
 
@@ -43,24 +48,27 @@ Voici l'architecture choisi pour mettre en place notre projet:
 
 
 # L’application monolithique 
-  * L’application monolithique OwnCloud est composée par trois conteneurs Docker: OnwCloud_server, Mariadb, Redis.
-  * Nous avons transformé cette application monolithique en rajoutant deux micro-services. Cependant, nous n'avons pas développé la partie front-end pour chaque micro-service.
- 
 
-# Micro-service Gestion Users
-* Ce micro-service permet la création d'un nouveau utilisateur et aussi la suppression et mise-à-jour d'un utilisateur. Il est mis dedans un conteneur Docker.
+#### L’application monolithique OwnCloud est composée de trois conteneurs Docker: OnwCloud_server, Mariadb, Redis. Dans un premeir, nous avions réaliser un push de l'image [Owncloud](https://hub.docker.com/r/owncloud/server/) et en faire par la suite un fichier docker-compose afin de déploiement d'applications composées de plusieurs conteneurs tout en définissant les configurations de l'application sous format YAML.  
+
+#### Nous avions transformé cette application monolithique en rajoutant les deux micro-services avec la création d'un fichier en python "app.py". Nous n'avions pas développé la partie front-end pour chaque micro-service.
+
+# Code source du micro-service
+
+#### A REMPLIR PAR JORGE
+
 
 # Micro-service Édition de Mot de Passe
   * Ce micro-service permet l’édition du mot de passe de chaque user. Il est mis dedans un conteneur Docker et est lié à un autre conteneur Docker pour le stockage des logs concernant l’extension pour le framework web Python : le Flask-limiter
 
 
 # Serveur Nginx
-  * Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’utilisé comme proxy inverse à fin de rediriger le trafic : soit vers l’application monolithique, soit vers les micro-services. Dedans ce conteneur nous avons aussi prévu l’activation d’une interface de gestion de pare-feu: le UFW.
+  * Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’utilisé comme **reverse proxy** (ou proxy inverse) afin de rediriger le traffic : soit vers l’application monolithique, soit vers les micro-services. Dedans ce conteneur nous avons aussi prévu l’activation d’une interface de gestion de pare-feu: le UFW.
 
 
 # Pipeline CI/CD
 
-* Le pipeline CI/CD permet l'intégration et le déploiement continus:
+* Le pipeline CI/CD réalisé via Jenkins a permi l'intégration et le déploiement continu de notre application publié sur GitHub:
 
 Intégration continue avec GitHub.
 Build des images Docker
