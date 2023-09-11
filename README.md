@@ -11,9 +11,6 @@
   * sécuriser les accès
   * mise en place d’une stack d’observabilité
 
-* Pour la mise en place de ce projet nous avons choisi OwnCloud: une plateforme d'hébergement open source proposant des services de stockages et de partages de fichiers en ligne assorti d'une plateforme de collaboration qui s'appuie la suite bureautique OnlyOffice. Similaire aux services publiques (Dropbox, Google Drive), celle-ci se distingue par le fait qu'elle puisse accorder à ses utilisateurs la création de leur propre serveur de stockage de fichiers personnel ou d'entreprise 
-
-
 # Contributeurs
 * [Yacine BEN HAMIDA](https://github.com/Yac19)
 * [Jorge DOS SANTOS](https://github.com/Jrgds)
@@ -22,13 +19,14 @@
 
 # Pré-requis
 Pour réaliser ce projet on a installé sur la machine :
-* git ou un IDE intégrant git (le VSCode)
-* Jenkins
-* Docker
+* **[VScode](https://code.visualstudio.com/)**, un éditeur de code source gratuit et open source développé par Microsoft permettant de créer, éditer et déboguer du code source dans divers langages de programmation.  
+* **[Jenkins](https://www.jenkins.io/)**, un outil **d'intégration continue (CI)** et de **livraison continue (CD)** open source ayant pour objectif l'automatisation du processus de construction, de test et de déploiement des applications logicielles. 
+* **[Docker](https://www.docker.com/)**, une plateforme de **conteneurisation** qui permet d'emballer une application et ses dépendances dans un conteneur léger, isolé et portable. 
 
 
 # Les éléments constitutifs de notre Projet
-  * Une a application monolithique
+
+
   * Micro-service Gestion Users
   * Micro-service Édition de Mot de Passe
   * Serveur Nginx
