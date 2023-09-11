@@ -31,9 +31,14 @@ Pour réaliser ce projet on a installé sur la machine :
 Pour la mise en place de ce projet, nous avions choisi [OwnCloud](https://owncloud.com/): une plateforme d'hébergement open source proposant des services de stockages et de partages de fichiers en ligne assorti d'une plateforme de collaboration qui s'appuie la suite bureautique OnlyOffice. Elle offre une alternative autogérée aux services de stockage en ligne tels que Dropbox, Google Drive et Microsoft OneDrive, permettant aux utilisateurs de conserver le contrôle total sur leurs données tout en bénéficiant de fonctionnalités de partage et de collaboration.
 Pour implémenter notre projet nous avons suivi la documentation présenté sur le site https://doc.owncloud.com/server/next/ , consulté pendant les mois de août et septembre 2023.
 
-### Choix des microservices :
+* L’application monolithique OwnCloud est composée de trois conteneurs Docker: OnwCloud_server, Mariadb, Redis. Dans un premeir, nous avions réaliser un push de l'image [Owncloud](https://hub.docker.com/r/owncloud/server/) et en faire par la suite un fichier docker-compose afin de déploiement d'applications composées de plusieurs conteneurs tout en définissant les configurations de l'application sous format YAML.  
 
-Concernant les micro-services, on en a choisi 2: 
+* Nous avions transformé cette application monolithique en rajoutant les deux micro-services avec la création d'un fichier en python "app.py". Nous n'avions pas développé la partie front-end pour chaque micro-service.
+
+
+### Les microservices :
+
+Concernant les micro-services, on en a choisi créer 2: 
 
 # 1- La gestion des utilisateurs (création des utilisateurs) permettant la création d'un nouvel utilisateur, la suppression ainsi que la mise-à-jour d'un utilisateur.
 *Ce micro-service permet l’édition du mot de passe de chaque user. Il est mis dedans un conteneur Docker et est lié à un autre conteneur Docker pour le stockage des logs concernant l’extension pour le framework web Python : le Flask-limiter
@@ -55,19 +60,9 @@ Voici l'architecture choisi pour mettre en place notre projet:
   * ![Diagramme_Project_B_](https://github.com/Yac19/full_app/blob/dev/Diagramme__ProjectB_.jpg)
 
 
-# L’application monolithique 
-
-#### L’application monolithique OwnCloud est composée de trois conteneurs Docker: OnwCloud_server, Mariadb, Redis. Dans un premeir, nous avions réaliser un push de l'image [Owncloud](https://hub.docker.com/r/owncloud/server/) et en faire par la suite un fichier docker-compose afin de déploiement d'applications composées de plusieurs conteneurs tout en définissant les configurations de l'application sous format YAML.  
-
-#### Nous avions transformé cette application monolithique en rajoutant les deux micro-services avec la création d'un fichier en python "app.py". Nous n'avions pas développé la partie front-end pour chaque micro-service.
-
 # Code source du micro-service
 
 #### A REMPLIR PAR JORGE
-
-
-# Serveur Nginx
-  *  Dedans ce conteneur nous avons aussi prévu l’activation d’une interface de gestion de pare-feu: le UFW.
 
 
 # Pipeline CI/CD
