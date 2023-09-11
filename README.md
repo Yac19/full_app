@@ -56,7 +56,7 @@ Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’
 
 ## La stack d’observabilité
 
-* En ce qui concerne la stack d’observabilité on a mis en place un conteneur docker avec Grafana, autre avec Prometheus, un autre avec Netdata et un autre avec Jaeger. Ils sont accessibles seulement au niveau local. On n’a pas fait la configuration de la stack d’observabilité, elle doit être réalisé manuellement via un navigateur.
+* En ce qui concerne la stack d’observabilité on a mis en place un conteneur docker avec Grafana, autre avec Prometheus, autre avec Netdata et autre avec Jaeger. Ils sont accessibles seulement au niveau local. On n’a pas fait la configuration de la stack d’observabilité, elle doit être réalisé manuellement via un navigateur.
 
 * Netdata est installé sur le serveur à superviser. Netdata fournit des visualisations en temps réel des métriques système et applicatives (CPU, mémoire, utilisation disque, i/O, métriques Nginx, Redis). Toutes ces données sont collectées et stockées dans Prometheus. Ensuite pour analyser ces données, et en sortir des graphiques on utilise Grafana.
 Jaeger est une plateforme open-source de traçage distribué. On le utilise pour le suivi des transactions et le diagnostic des performances dans les architectures micro-services. Il permet de suivre le cheminement des requêtes à travers différents composants d'une application distribuée. Il peut aider à identifier les goulots d'étranglement, à améliorer les performances et à résoudre les problèmes de latence dans les systèmes complexes. 
