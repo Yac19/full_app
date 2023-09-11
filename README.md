@@ -98,7 +98,7 @@ Déploiement.
 	Gestion des erreurs .
 	Optimisation et sécurité (Gestion des taux d'appels avec Flask-Limiter ; utilisation des variables d'environnement).
 * Tests
-* Déploiement avec Docker
+* Déploiement avec Docker (en mode rootless, pour une question de sécurité)
 * Intégration et le déploiement continus via Jenkins
 
 		(METTRE DES CAPTURES D'ÉCRAN SUR CHAQUE ÉLÉMENT)
