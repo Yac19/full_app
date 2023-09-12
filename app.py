@@ -148,4 +148,4 @@ if __name__ == '__main__':
         all_users = Users.query.all()
         #for user in all_users:
             #print(f"ID: {user.id}, Username: {user.username}, Password: {user.password}")
-    app.run(debug=False, host='173.18.0.6', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)
