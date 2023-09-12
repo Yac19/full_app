@@ -47,7 +47,7 @@ Pour implémenter notre projet nous avons suivi la documentation présenté sur 
 On a choisi créer deux micro-services: 
 
 * 1- La gestion des utilisateurs (création des utilisateurs) permettant la création d'un nouvel utilisateur, la suppression ainsi que la mise-à-jour d'un utilisateur.
-*Ce micro-service permet l’édition du mot de passe de chaque user. Il est mis dedans un conteneur Docker et est lié à un autre conteneur Docker pour le stockage des logs concernant l’extension pour le framework web Python : le Flask-limiter
+ Ce micro-service permet l’édition du mot de passe de chaque user. Il est mis dedans un conteneur Docker et est lié à un autre conteneur Docker pour le stockage des logs concernant l’extension pour le framework web Python : le Flask-limiter
 
 * 2- La gestion des mots de passe (modification de mot de passe pour chaque utilisateur).
 
