@@ -41,7 +41,7 @@ Pour implémenter notre projet nous avons suivi la documentation présenté sur 
 Concernant les micro-services, on en a choisi créer 2: 
 
 * 1- La gestion des utilisateurs (création des utilisateurs) permettant la création d'un nouvel utilisateur, la suppression ainsi que la mise-à-jour d'un utilisateur.
-*Ce micro-service permet l’édition du mot de passe de chaque user. Il est mis dedans un conteneur Docker et est lié à un autre conteneur Docker pour le stockage des logs concernant l’extension pour le framework web Python : le Flask-limiter
+*Ce micro-service permet l’édition du mot de passe de chaque user. Il a été conteneurisé via Docker et lié à un autre conteneur pour le stockage des logs concernant l’extension pour le framework web Python : le Flask-limiter
 
 * 2- La gestion des mots de passe (modification de mot de passe pour chaque utilisateur).
 
@@ -51,12 +51,12 @@ Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’
 
 
 ## Le pare feu
-* On a pas mis le pare feu sur dans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de Docker ( https://docs-docker-com.translate.goog/network/packet-filtering-firewalls/?_x_tr_sl=auto&_x_tr_tl=fr&_x_tr_hl=fr&_x_tr_pto=wapp ) c’est pas recommandable activer le pare feu UFW. 
+* On a pas mis le pare feu sur dans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de [Docker](https://docs-docker-com.translate.goog/network/packet-filtering-firewalls/?_x_tr_sl=auto&_x_tr_tl=fr&_x_tr_hl=fr&_x_tr_pto=wapp ), il n'est pas recommandé d'activer le pare feu UFW (Unprotected FireWall). 
 
 
 ## La stack d’observabilité
 
-* En ce qui concerne la stack d’observabilité on a mis en place un conteneur docker avec Grafana, autre avec Prometheus, autre avec Netdata et autre avec Jaeger. Ils sont accessibles seulement au niveau local. On n’a pas fait la configuration de la stack d’observabilité, elle doit être réalisé manuellement via un navigateur.
+* En ce qui concerne la stack d’observabilité, on a mis en place un conteneur docker avec Grafana, un avec Prometheus, un avec Netdata et un autre avec Jaeger. Ils sont accessibles seulement au niveau local. On n’a pas fait la configuration de la stack d’observabilité, elle doit être réalisé manuellement via un navigateur.
 
 * Netdata est installé sur le serveur à superviser. Netdata fournit des visualisations en temps réel des métriques système et applicatives (CPU, mémoire, utilisation disque, i/O, métriques Nginx, Redis). Toutes ces données sont collectées et stockées dans Prometheus. Ensuite pour analyser ces données, et en sortir des graphiques on utilise Grafana.
 Jaeger est une plateforme open-source de traçage distribué. On le utilise pour le suivi des transactions et le diagnostic des performances dans les architectures micro-services. Il permet de suivre le cheminement des requêtes à travers différents composants d'une application distribuée. Il peut aider à identifier les goulots d'étranglement, à améliorer les performances et à résoudre les problèmes de latence dans les systèmes complexes. 
