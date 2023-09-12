@@ -16,8 +16,8 @@ services:
     container_name: owncloud_server_test
     restart: always
     
-    #ports:
-    #  - "${HTTP_PORT}:8080"
+    ports:
+      - "${HTTP_PORT}:8080"
     depends_on:
       - mariadb
       - redis
@@ -41,9 +41,9 @@ services:
       retries: 5
     volumes:
       - files:/mnt/data
-    #networks:
-      #owncloud-net:
-        #ipv4_address: 173.18.0.3
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.3
 
   mariadb:
     image: mariadb:10.11 # minimum required ownCloud version is 10.9
@@ -63,9 +63,9 @@ services:
       retries: 5
     volumes:
       - mysql:/var/lib/mysql
-    #networks:
-     # owncloud-net:
-      #  ipv4_address: 173.18.0.4
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.4
 
   redis:
     image: redis:6
@@ -79,9 +79,9 @@ services:
       retries: 5
     volumes:
       - redis:/data
-   # networks:
-     # owncloud-net:
-       # ipv4_address: 173.18.0.5
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.5
   
   microservice_container_mp:
     build:
@@ -94,9 +94,9 @@ services:
     #     condition: service_healthy  # Attendre que le service owncloud soit sain
     #ports:
     #  - "5002:5000"
-   # networks:
-     # owncloud-net:
-       # ipv4_address: 173.18.0.6
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.6
 
   flask_limiter_redis:
     image: redis:6
@@ -104,9 +104,9 @@ services:
     restart: always
     depends_on:
       - microservice_container_mp
-   # networks:
-     # owncloud-net:
-       # ipv4_address: 173.18.0.7
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.7
   
   nginx-proxy:
     build:
@@ -119,9 +119,9 @@ services:
     ports:
       - "80:80"
       #- "443:443"
-   # networks:
-    #  owncloud-net:
-      #  ipv4_address: 173.18.0.9
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.9
 
   grafana:
     image: grafana/grafana:latest
@@ -136,9 +136,9 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
     volumes:
       - grafana-data:/var/lib/grafana
-   # networks:
-      #owncloud-net:
-        #ipv4_address: 173.18.0.10
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.10
 
   jaeger:
     image: jaegertracing/all-in-one:latest
@@ -146,9 +146,9 @@ services:
     restart: always
     ports:
       - "16686:16686"
-    #networks:
-     # owncloud-net:
-     #   ipv4_address: 173.18.0.11
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.11
 
   netdata:
     image: netdata/netdata:latest
@@ -166,9 +166,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - "19999:19999"
-   # networks:
-    #  owncloud-net:
-      #  ipv4_address: 173.18.0.12
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.12
   
   prometheus:
     image: prom/prometheus:latest
@@ -183,14 +183,14 @@ services:
       - prometheus-data:/prometheus  # Stockage des données de Prometheus
     ports:
       - "9090:9090"
-   # networks:
-    #  owncloud-net:
-     #   ipv4_address: 173.18.0.2
+    networks:
+      owncloud-net:
+        ipv4_address: 173.18.0.2
 
-#networks:
- # owncloud-net:
-  #  driver: bridge
-  #  ipam:
-   #   driver: default
-   #   config:
-      #  - subnet: 173.18.0.0/16
+networks:
+  owncloud-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 173.18.0.0/16
