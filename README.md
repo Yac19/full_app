@@ -57,7 +57,7 @@ Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’
 
 
 ## Le pare feu :
-* On a pas mis le pare feu sur dans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de Docker ( https://docs.docker.com/network/packet-filtering-firewalls/ ) c’est pas recommandable activer le pare feu UFW. 
+* On a pas mis le pare feu dedans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de Docker ( https://docs.docker.com/network/packet-filtering-firewalls/ ) c’est pas recommandable activer le pare feu UFW. 
 
 
 ## La stack d’observabilité
