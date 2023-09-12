@@ -113,12 +113,12 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
 * Configuration de Nginx comme proxy inverse 
 	* Nous avons configuré Nginx dans un autre conteneur en tant que proxy inverse pour diriger le trafic depuis le port 80 vers notre application Flask et vers l'application monolithique.   
 * Communication entre les conteneurs Docker 
-	* La communication entre les conteneurs Docker est assuré en utilisant les noms de service ou les adresses IP privées définis dans le fichier Docker Compose pour que Nginx puisse rediriger le trafic vers Flask et OwnCloud.   
+	* La communication entre les conteneurs Docker est assuré en utilisant les noms de service (ou les adresses IP privées) définis dans le fichier Docker Compose pour que Nginx puisse rediriger le trafic vers Flask et OwnCloud.   
 * Gestion de la base de données OwnCloud 
 	* On a vérifié le bon fonctionnement des opérations sur une base de données SQLite OwnCloud à l'aide de Python et de l'extension SQLite3 sur VSCode.     
 * Utilisation de Curl (et le ThunderClient sur VSCode) pour tester l'API   
 	* On a testé les différentes fonctionnalités de l'API, telles que l'enregistrement, la synchronisation, la suppression, etc.   
-	* La communication entre les conteneurs Docker et l’application monolithique est assuré en utilisant les noms de service définis dans le fichier Docker Compose pour que Nginx puisse rediriger le trafic vers Flask et OwnCloud.   
+	* La communication entre les conteneurs Docker et l’application monolithique est assuré en utilisant les noms de service (ou les adresses IP privées) définis dans le fichier Docker Compose pour que Nginx puisse rediriger le trafic vers Flask et OwnCloud.   
 ### Tests
 * On a crée des tests pour vérifier le bon fonctionnement et intégration des micro-services.
 ### Déploiement avec Docker (en mode rootless, pour une question de sécurité).   
