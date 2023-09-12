@@ -86,7 +86,7 @@ services:
   microservice_container_mp:
     build:
       context: .
-      dockerfile: Dockerfile-Micro-service-Mot-Passe
+      dockerfile: Dockerfile-flask
     container_name: microservice_container_mp
     restart: always
     depends_on:
