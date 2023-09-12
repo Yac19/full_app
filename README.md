@@ -132,4 +132,4 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
 * On active le logiciel Docker (en mode rootless, pour une question de sécurité)
 * Sur un terminal PowerShell on se place dedans le répertoire où se trouve le fichier « docker-compose.yml « 
 * Sur le terminal PowerShell on execute la commande « docker-compose up »
-* On peut vérifier le fonctionnement et l’intégration des micro-services dans l'application monolithique via le ThunderClient sur VSCode.   
+* On peut vérifier le fonctionnement et l’intégration des micro-services avec l'application monolithique via le ThunderClient sur VSCode.   
