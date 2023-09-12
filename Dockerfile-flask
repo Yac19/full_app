@@ -16,6 +16,12 @@ RUN apt-get update \
 EXPOSE 5000
 
 # -m flask run --host=172.18.0.6
-CMD ["python3", "app.py"]
-
-
+CMD ["python3", "app.py", \
+     "--owncloud-version=$OWNCLOUD_VERSION", \
+     "--owncloud-domain=$OWNCLOUD_DOMAIN", \
+     "--trusted-domains=$OWNCLOUD_TRUSTED_DOMAINS", \
+     "--admin-username=$ADMIN_USERNAME", \
+     "--admin-password=$ADMIN_PASSWORD", \
+     "--http-port=$HTTP_PORT", \
+     "--owncloud-api-url=$OWNCLOUD_API_URL", \
+     "--grafana-admin-password=$GF_SECURITY_ADMIN_PASSWORD"]
