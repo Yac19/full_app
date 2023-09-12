@@ -20,7 +20,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Lancer le fail2ban
-RUN service fail2ban start
+# RUN service fail2ban start
 
 # Copier le script d'initialisation
 COPY init-fail2ban.sh /usr/local/bin/
