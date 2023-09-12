@@ -87,7 +87,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-Micro-service-Mot-Passe
-    container_name: microservice_container_EditerMotDePass
+    container_name: microservice_container_mp
     restart: always
     depends_on:
       - owncloud
@@ -111,14 +111,14 @@ services:
   nginx-proxy:
     build:
       context: .
-      dockerfile: Dockerfile-cert-generator
+      dockerfile: Dockerfile-nginx
     container_name: Nginx-proxy
     restart: always
     depends_on:
       - owncloud
-      - microservice_container_mp
     ports:
       - "80:80"
+      #- "443:443"
     networks:
       owncloud-net:
         ipv4_address: 173.18.0.9
@@ -128,6 +128,7 @@ services:
     container_name: grafana
     depends_on:
       - prometheus
+      - jaeger
     restart: always
     ports:
       - "3000:3000"
@@ -178,7 +179,7 @@ services:
       - flask_limiter_redis
     restart: always
     volumes:
-      - ./prometheus:/etc/prometheus  # Monter la configuration Prometheus depuis votre dossier local
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Utiliser le chemin relatif au fichier prometheus.yml
       - prometheus-data:/prometheus  # Stockage des données de Prometheus
     ports:
       - "9090:9090"

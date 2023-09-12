@@ -1,0 +1,33 @@
+# Utiliser l'image "nginx" comme deuxième étape de construction
+FROM nginx:latest
+
+# Installation de fail2ban
+RUN apt-get update \
+&& apt-get install -y ssh \
+&& apt install -y fail2ban && echo -e "[sshd]\nenabled = true\nport = ssh\nfilter = sshd\nlogpath = /var/log/auth.log\nmaxretry = 3\nbantime = 3600" | tee -a /etc/fail2ban/jail.local
+COPY fail2ban.conf /etc/fail2ban/fail2ban.conf
+
+# Copier le fichier jail.local.conf dans le conteneur
+COPY jail.local.conf /etc/fail2ban/jail.local
+
+RUN cd \
+&& cd /var/log/ \
+&& touch auth.log \
+&& cd 
+
+# Copier le fichier de configuration NGINX
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Lancer le fail2ban
+RUN service fail2ban start
+
+# Copier le script d'initialisation
+COPY init-fail2ban.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/init-fail2ban.sh
+
+# Définir les ports exposés
+EXPOSE 80
+
+# Commande d'initialisation du conteneur
+CMD ["/usr/local/bin/init-fail2ban.sh"]
