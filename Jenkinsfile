@@ -8,6 +8,8 @@ pipeline {
             ADMIN_USERNAME=credentials('ADMIN_USERNAME')
             ADMIN_PASSWORD=credentials('ADMIN_PASSWORD')
             HTTP_PORT=credentials('HTTP_PORT')
+            OWNCLOUD_API_URL=credentials('OWNCLOUD_API_URL')
+            GF_SECURITY_ADMIN_PASSWORD=credentials('GF_SECURITY_ADMIN_PASSWORD')
         }
     
     stages {
