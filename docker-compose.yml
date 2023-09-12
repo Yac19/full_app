@@ -179,7 +179,7 @@ services:
       - flask_limiter_redis
     restart: always
     volumes:
-      - /prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  # Utiliser le chemin relatif au fichier prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Utiliser le chemin relatif au fichier prometheus.yml
       - prometheus-data:/prometheus  # Stockage des données de Prometheus
     ports:
       - "9090:9090"
