@@ -29,8 +29,8 @@ limiter = Limiter(get_remote_address, app=app, storage_uri=app.config['REDIS_URL
 
 # Autres variables d'environnement
 OWNCLOUD_API_URL = os.getenv('OWNCLOUD_API_URL')
-admin_credentials = os.getenv('ADMIN_CREDENTIALS')
-custom_admin_credentials = os.getenv('admin_credentials')  # Note: Variable names are case-sensitive
+ADMIN_CREDENTIALS = os.getenv('ADMIN_CREDENTIALS')
+custom_admin_credentials = os.getenv('ADMIN_CREDENTIALS')  # Note: Variable names are case-sensitive
 
 # Configurer la base de données
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
@@ -77,7 +77,7 @@ def update_password(user_id):
             }
 
             headers = { 
-                "Authorization": "Basic " + base64.b64encode(admin_credentials.encode()).decode()
+                "Authorization": "Basic " + base64.b64encode(ADMIN_CREDENTIALS.encode()).decode()
             }
 
             response = requests.put(f"{OWNCLOUD_API_URL}/{user_id}", data=group_data, headers=headers)
@@ -99,12 +99,12 @@ def update_password(user_id):
 
 # Fonction pour vérifier si un utilisateur existe déjà sur le serveur OwnCloud
 def owncloud_user_exists(user_id):
-    response = requests.get(OWNCLOUD_API_URL + user_id, auth=tuple(admin_credentials.split(':')))
+    response = requests.get(OWNCLOUD_API_URL + user_id, auth=tuple(ADMIN_CREDENTIALS.split(':')))
     return response.status_code
 
 # Fonction pour synchroniser les utilisateurs depuis OwnCloud
 def sync_owncloud_users():
-    response = requests.get(OWNCLOUD_API_URL.format(userid=""), auth=tuple(admin_credentials.split(':')))
+    response = requests.get(OWNCLOUD_API_URL.format(userid=""), auth=tuple(ADMIN_CREDENTIALS.split(':')))
     if response.status_code == 200:
         root = ET.fromstring(response.text)
         user_list = [user.text for user in root.findall(".//data/users/element")]
