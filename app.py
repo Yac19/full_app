@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from dotenv import load_dotenv
 import os
 from flask import request, jsonify
-from flask_caching import Cache
+#from flask_caching import Cache
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from redis import Redis
@@ -16,9 +16,9 @@ app = Flask(__name__)
 # Charger les variables d'environnement depuis le fichier .env -> Installer le package via pip install dotenv
 load_dotenv()
 
-# Utilisation du caching
-app.config['CACHE_TYPE'] = 'simple'
-cache = Cache(app)
+#Utilisation du caching
+#app.config['CACHE_TYPE'] = 'simple'
+#cache = Cache(app)
 
 # Gestion des taux d'appels avec Flask-Limiter
 app.config['REDIS_URL'] = os.getenv('storage__uri')  # URL de votre instance Redis
@@ -27,7 +27,7 @@ app.config['REDIS_PREFIX'] = 'flask-limiter-MotDePass:'  # Pr√©fixe pour les cl√
 limiter = Limiter(get_remote_address, app=app, storage_uri=app.config['REDIS_URL'], default_limits=["50 per day", "20 per hour"])
 
 
-# Utiliser les variables d'environnement
+# Autres variables d'environnement
 OWNCLOUD_API_URL = os.getenv('OWNCLOUD_API_URL')
 admin_credentials = os.getenv('ADMIN_CREDENTIALS')
 custom_admin_credentials = os.getenv('admin_credentials')  # Note: Variable names are case-sensitive
