@@ -13,7 +13,7 @@ volumes:
 services:
   owncloud:
     image: owncloud/server:${OWNCLOUD_VERSION}
-    container_name: owncloud_server
+    container_name: owncloud_server_test
     restart: always
     
     #ports:
@@ -47,7 +47,7 @@ services:
 
   mariadb:
     image: mariadb:10.11 # minimum required ownCloud version is 10.9
-    container_name: owncloud_mariadb
+    container_name: owncloud_mariadb_test
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=owncloud
@@ -69,7 +69,7 @@ services:
 
   redis:
     image: redis:6
-    container_name: owncloud_redis
+    container_name: owncloud_redis_test
     restart: always
     command: ["--databases", "1"]
     healthcheck:
