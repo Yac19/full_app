@@ -26,7 +26,7 @@ Pour réaliser ce projet on a installé sur la machine :
 
 # L'architecture
 Voici l'architecture choisi pour mettre en place notre projet:
-  * ![Diagramme_Project_B_]( https://github.com/Yac19/full_app/blob/dev/Diagramme_ProjectB.jpg )
+  * ![Diagramme_Project_B_]( https://github.com/Yac19/full_app/blob/dev/Diagramme_ProjectB.jpg?raw=true )
 
 
 # Les éléments constitutifs de notre Projet
