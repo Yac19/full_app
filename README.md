@@ -1,4 +1,5 @@
-# App_OwnCloud_Project-B
+
+ # App_OwnCloud_Project-B
 
 ### Le projet B a pour finalité de transformer une **application monolithique** en **micro-services** et l’intégrer de manière automatisée via **pipeline CI/CD** en veillant à intégrer les principes suivants :
 
@@ -36,7 +37,7 @@ Voici l'architecture choisi pour mettre en place notre projet:
 Pour la mise en place de ce projet, nous avions choisi [OwnCloud](https://owncloud.com/): une plateforme d'hébergement open source proposant des services de stockages et de partages de fichiers en ligne assorti d'une plateforme de collaboration qui s'appuie la suite bureautique OnlyOffice. Elle offre une alternative autogérée aux services de stockage en ligne tels que Dropbox, Google Drive et Microsoft OneDrive, permettant aux utilisateurs de conserver le contrôle total sur leurs données tout en bénéficiant de fonctionnalités de partage et de collaboration.
 Pour implémenter notre projet nous avons suivi la documentation présenté sur le site https://doc.owncloud.com/server/next/ , consulté pendant les mois de août et septembre 2023.
 
-* L’application monolithique OwnCloud est composée de trois conteneurs Docker: OnwCloud_server, Mariadb, Redis. Dans un premeir, nous avions réaliser un push de l'image [Owncloud](https://hub.docker.com/r/owncloud/server/) et en faire par la suite un fichier docker-compose afin de déploiement d'applications composées de plusieurs conteneurs tout en définissant les configurations de l'application sous format YAML.  
+* L’application monolithique OwnCloud est composée de trois conteneurs Docker: OnwCloud_server, Mariadb, Redis. On a installé l’application monolithique via le script docker-compose.yml présenté dans la documentation OwnCloud sur la page web https://doc.owncloud.com/server/10.13/admin_manual/installation/docker/ .  
 
 * Nous avions transformé cette application monolithique en rajoutant les deux micro-services avec la création d'un fichier en python "app.py". Nous n'avions pas développé la partie front-end pour chaque micro-service.
 
@@ -52,7 +53,7 @@ On a choisi créer deux micro-services:
 
 
 ## Serveur Nginx:
-Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’utilisé comme **reverse proxy** (ou proxy inverse) afin de rediriger le traffic : soit vers l’application monolithique, soit vers les micro-services. Dans ce conteneur on a configurer le framework fail2ban. L’accès à l’instance OwnCloud est configuré pour se réaliser via le port 80 (HTTP), car selon la documentation ( https://doc.owncloud.com/server/10.13/admin_manual/installation/docker/ ) l'accès ne fonctionne qu'avec http, pas avec https. 
+Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’utilisé comme **reverse proxy** (ou proxy inverse) afin de rediriger le trafic : soit vers l’application monolithique, soit vers les micro-services. Dans ce conteneur on a configurer le framework fail2ban. L’accès à l’instance OwnCloud est configuré pour se réaliser via le port 80 (HTTP), car selon la documentation ( https://doc.owncloud.com/server/10.13/admin_manual/installation/docker/ ) l'accès ne fonctionne qu'avec http, pas avec https. 
 
 
 ## Le pare feu :
@@ -63,13 +64,13 @@ Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’
 
 * En ce qui concerne la stack d’observabilité on a mis en place un conteneur docker avec Grafana, autre avec Prometheus, autre avec Netdata et autre avec Jaeger. Ils sont accessibles seulement au niveau local. On n’a pas fait la configuration de la stack d’observabilité, elle doit être réalisé manuellement via un navigateur.
 
-* Netdata est installé sur le serveur à superviser. Netdata fournit des visualisations en temps réel des métriques système et applicatives (CPU, mémoire, utilisation disque, i/O, métriques Nginx, Redis). Toutes ces données sont collectées et stockées dans Prometheus. Ensuite pour analyser ces données, et en sortir des graphiques on utilise Grafana.
+* Netdata est installé sur le serveur à superviser. Netdata fournit des visualisations en temps réel des métriques système et applicatives (CPU, mémoire, utilisation disque, ...). Toutes ces données sont collectées et stockées dans Prometheus. Ensuite pour analyser ces données, et en sortir des graphiques on utilise Grafana.
 Jaeger est une plateforme open-source de traçage distribué. On le utilise pour le suivi des transactions et le diagnostic des performances dans les architectures micro-services. Il permet de suivre le cheminement des requêtes à travers différents composants d'une application distribuée. Il peut aider à identifier les goulots d'étranglement, à améliorer les performances et à résoudre les problèmes de latence dans les systèmes complexes. 
 
 
 # Pipeline CI/CD
 
-* Le pipeline CI/CD réalisé via Jenkins a permi l'intégration et le déploiement continu de notre application publié sur GitHub:
+* Le pipeline CI/CD réalisé via Jenkins a permis l'intégration et le déploiement continu de notre application publié sur GitHub:
 
   * Intégration continue avec GitHub.  
   * Build des images Docker  
@@ -131,4 +132,4 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
 * On active le logiciel Docker (en mode rootless, pour une question de sécurité)
 * Sur un terminal PowerShell on se place dedans le répertoire où se trouve le fichier « docker-compose.yml « 
 * Sur le terminal PowerShell on execute la commande « docker-compose up »
-* On peut vérifier le fonctionement et l'integration des micro-services dans l'application monolithique via le ThunderClient sur VSCode.   
+* On peut vérifier le fonctionnement et l’intégration des micro-services dans l'application monolithique via le ThunderClient sur VSCode.   
