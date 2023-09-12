@@ -104,7 +104,8 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
 	* Une route pour obtenir la liste des utilisateurs. 
 * Gestion des erreurs.
     * Nous avons géré les erreurs et les exceptions à l'aide de codes de statut HTTP appropriés et de réponses JSON pour indiquer le succès ou l'échec des opérations.   
-* Optimisation et sécurité (Gestion des taux d'appels avec Flask-Limiter ; utilisation des variables d'environnement).
+* Optimisation et sécurité
+    * Gestion des taux d'appels avec Flask-Limiter, utilisation des variables d'environnement, etc.   
     * Dans le micro-service concernant la gestion des mots de passe on a mis la base de données backup pour Flask-Limiter dans un autre conteneur.
 * Utilisation de Docker
     * On a configuré un environnement Docker pour l'application en créant des fichiers Dockerfile pour Flask et Nginx et on a utilisé Docker Compose pour gérer les conteneurs.   
