@@ -110,7 +110,7 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
 * Utilisation de Docker
     * On a configuré un environnement Docker pour l'application en créant des fichiers Dockerfile pour Flask et Nginx et on a utilisé Docker Compose pour gérer les conteneurs.   
 * Configuration de Nginx comme proxy inverse 
-	* Nous avons configuré Nginx dans un autre conteneur en tant que proxy inverse pour diriger le trafic depuis le port 80 vers notre application Flask.   
+	* Nous avons configuré Nginx dans un autre conteneur en tant que proxy inverse pour diriger le trafic depuis le port 80 vers notre application Flask et vers l'application monolithique.   
 * Communication entre les conteneurs Docker 
 	* La communication entre les conteneurs Docker est assuré en utilisant les noms de service ou les adresses IP privées définis dans le fichier Docker Compose pour que Nginx puisse rediriger le trafic vers Flask et OwnCloud.   
 * Gestion de la base de données OwnCloud 
