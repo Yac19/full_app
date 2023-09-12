@@ -23,6 +23,9 @@ Pour réaliser ce projet on a installé sur la machine :
 * **[Jenkins](https://www.jenkins.io/)**, un outil **d'intégration continue (CI)** et de **livraison continue (CD)** open source ayant pour objectif l'automatisation du processus de construction, de test et de déploiement des applications logicielles. 
 * **[Docker](https://www.docker.com/)**, une plateforme de **conteneurisation** qui permet d'emballer une application et ses dépendances dans un conteneur léger, isolé et portable. 
 
+### L'architecture
+Voici l'architecture choisi pour mettre en place notre projet:
+  * ![Diagramme_Project_B_](https://github.com/Yac19/full_app/blob/dev/Diagramme__ProjectB_.jpg)
 
 ### Les éléments constitutifs de notre Projet
 
@@ -60,12 +63,6 @@ Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’
 
 * Netdata est installé sur le serveur à superviser. Netdata fournit des visualisations en temps réel des métriques système et applicatives (CPU, mémoire, utilisation disque, i/O, métriques Nginx, Redis). Toutes ces données sont collectées et stockées dans Prometheus. Ensuite pour analyser ces données, et en sortir des graphiques on utilise Grafana.
 Jaeger est une plateforme open-source de traçage distribué. On le utilise pour le suivi des transactions et le diagnostic des performances dans les architectures micro-services. Il permet de suivre le cheminement des requêtes à travers différents composants d'une application distribuée. Il peut aider à identifier les goulots d'étranglement, à améliorer les performances et à résoudre les problèmes de latence dans les systèmes complexes. 
-
-
-### L'architecture
-Voici l'architecture choisi pour mettre en place notre projet:
-  * ![Diagramme_Project_B_](https://github.com/Yac19/full_app/blob/dev/Diagramme__ProjectB_.jpg)
-
 
 ### Code source du micro-service
 
