@@ -68,19 +68,6 @@ Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’
 Jaeger est une plateforme open-source de traçage distribué. On le utilise pour le suivi des transactions et le diagnostic des performances dans les architectures micro-services. Il permet de suivre le cheminement des requêtes à travers différents composants d'une application distribuée. Il peut aider à identifier les goulots d'étranglement, à améliorer les performances et à résoudre les problèmes de latence dans les systèmes complexes. 
 
 
-# Pipeline CI/CD
-
-* Le pipeline CI/CD réalisé via Jenkins a permis l'intégration et le déploiement continu de notre application publié sur GitHub:
-
-  * Intégration continue avec GitHub.  
-  * Build des images Docker  
-  * Tests automatisés  
-  * Déploiement continu sur des environnements  
-  * Déploiement  
-
-* Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
-
-
 # Feuille de route suivi
 Voici un résumé des étapes que nous avons suivies pour transformer une application monolithique en micro-services et l’intégrer de manière automatisée via pipeline CI/CD :
       	
@@ -124,6 +111,19 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
 ### Déploiement avec Docker (en mode rootless, pour une question de sécurité).   
 ### Intégration et le déploiement continus via Jenkins
 * On a ajouté des secrets sur Jenkins en ce qui concerne les mots de passe, les identifiants, etc.
+
+
+# Pipeline CI/CD
+
+* Le pipeline CI/CD réalisé via Jenkins a permis l'intégration et le déploiement continu de notre application publié sur GitHub:
+
+  * Intégration continue avec GitHub.  
+  * Build des images Docker  
+  * Tests automatisés  
+  * Déploiement continu sur des environnements  
+  * Déploiement  
+
+* Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
 
 
 # Installation du projet
