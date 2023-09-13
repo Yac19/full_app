@@ -73,18 +73,6 @@ On a choisi créer deux micro-services:
 Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’utilisé comme **reverse proxy** (ou proxy inverse) afin de rediriger le trafic : soit vers l’application monolithique, soit vers les micro-services. Dans ce conteneur on a configurer le framework fail2ban. L’accès à l’instance OwnCloud est configuré pour se réaliser via le port 80 (HTTP), car selon la documentation ( https://doc.owncloud.com/server/10.13/admin_manual/installation/docker/ ) l'accès ne fonctionne qu'avec http, pas avec https. 
 
 
-## Le pare feu :
-* On a pas mis le pare feu dans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de Docker ( https://docs.docker.com/network/packet-filtering-firewalls/ ) c’est pas recommandable activer le pare feu UFW. 
-
-
-## La stack d’observabilité
-
-* En ce qui concerne la stack d’observabilité on a mis en place un conteneur docker avec Grafana, autre avec Prometheus, autre avec Netdata et autre avec Jaeger. Ils sont accessibles seulement au niveau local. On n’a pas fait la configuration de la stack d’observabilité, elle doit être réalisé manuellement via un navigateur.
-
-* Netdata est installé sur le serveur à superviser. Netdata fournit des visualisations en temps réel des métriques système et applicatives (CPU, mémoire, utilisation disque, ...). Toutes ces données sont collectées et stockées dans Prometheus. Ensuite pour analyser ces données, et en sortir des graphiques on utilise Grafana.
-Jaeger est une plateforme open-source de traçage distribué. On le utilise pour le suivi des transactions et le diagnostic des performances dans les architectures micro-services. Il permet de suivre le cheminement des requêtes à travers différents composants d'une application distribuée. Il peut aider à identifier les goulots d'étranglement, à améliorer les performances et à résoudre les problèmes de latence dans les systèmes complexes. 
-
-
 # Feuille de route suivi
 Voici un résumé des étapes que nous avons suivies pour transformer une application monolithique en micro-services et l’intégrer de manière automatisée via pipeline CI/CD :
       	
@@ -122,10 +110,13 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
 	* On a vérifié le bon fonctionnement des opérations sur une base de données SQLite OwnCloud à l'aide de Python et de l'extension SQLite3 sur VSCode.     
 * Utilisation de Curl (et le ThunderClient sur VSCode) pour tester l'API   
 	* On a testé les différentes fonctionnalités de l'API, telles que l'enregistrement, la synchronisation, la suppression, etc.   
-	* La communication entre les conteneurs Docker et l’application monolithique est assuré en utilisant les noms de service (ou les adresses IP privées) définis dans le fichier Docker Compose pour que Nginx puisse rediriger le trafic vers Flask et OwnCloud.   
+	* La communication entre les conteneurs Docker et l’application monolithique est assuré en utilisant les noms de service (ou les adresses IP privées) définis dans le fichier Docker Compose pour que Nginx puisse rediriger le trafic vers Flask et OwnCloud.
+   
 ### Tests
 * On a crée des tests pour vérifier le bon fonctionnement et intégration des micro-services.
-### Déploiement avec Docker (en mode rootless, pour une question de sécurité).   
+  
+### Déploiement avec Docker (en mode rootless, pour une question de sécurité).
+
 ### Intégration et le déploiement continus via Jenkins
 * On a ajouté des secrets sur Jenkins en ce qui concerne les mots de passe, les identifiants, etc.
 
@@ -141,3 +132,14 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
   * Déploiement  
 
 * Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
+
+## Le pare feu :
+* On a pas mis le pare feu dans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de Docker ( https://docs.docker.com/network/packet-filtering-firewalls/ ) c’est pas recommandable activer le pare feu UFW. 
+
+
+## La stack d’observabilité
+
+* En ce qui concerne la stack d’observabilité on a mis en place un conteneur docker avec Grafana, autre avec Prometheus, autre avec Netdata et autre avec Jaeger. Ils sont accessibles seulement au niveau local. On n’a pas fait la configuration de la stack d’observabilité, elle doit être réalisé manuellement via un navigateur.
+
+* Netdata est installé sur le serveur à superviser. Netdata fournit des visualisations en temps réel des métriques système et applicatives (CPU, mémoire, utilisation disque, ...). Toutes ces données sont collectées et stockées dans Prometheus. Ensuite pour analyser ces données, et en sortir des graphiques on utilise Grafana.
+Jaeger est une plateforme open-source de traçage distribué. On le utilise pour le suivi des transactions et le diagnostic des performances dans les architectures micro-services. Il permet de suivre le cheminement des requêtes à travers différents composants d'une application distribuée. Il peut aider à identifier les goulots d'étranglement, à améliorer les performances et à résoudre les problèmes de latence dans les systèmes complexes. 
