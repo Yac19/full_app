@@ -24,7 +24,18 @@ Pour réaliser ce projet on a installé sur la machine :
 * **[Jenkins](https://www.jenkins.io/)**, un outil **d'intégration continue (CI)** et de **livraison continue (CD)** open source ayant pour objectif l'automatisation du processus de construction, de test et de déploiement des applications logicielles. 
 * **[Docker](https://www.docker.com/)**, une plateforme de **conteneurisation** qui permet d'emballer une application et ses dépendances dans un conteneur léger, isolé et portable. 
 
+# Installation du projet
+* Créer un dossier dans lequel on installera le projet
+  ```
+  cd .\Desktop\
+  ```
+* On clone le repo
+* On active le logiciel Docker (en mode rootless, pour une question de sécurité)
+* Sur un terminal PowerShell on se place dedans le répertoire où se trouve le fichier « docker-compose.yml « 
+* Sur le terminal PowerShell on execute la commande « docker-compose up »
+* On peut vérifier le fonctionnement et l’intégration des micro-services avec l'application monolithique via le ThunderClient sur VSCode.
 
+  
 # L'architecture
 Voici l'architecture choisi pour mettre en place notre projet:
   * ![Diagramme_Project_B_]( https://github.com/Yac19/full_app/blob/dev/Diagramme_ProjectB.jpg?raw=true )
@@ -124,12 +135,3 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
   * Déploiement  
 
 * Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
-
-
-# Installation du projet
-* Créer un dossier dans lequel on installera le projet
-* On clone le repo
-* On active le logiciel Docker (en mode rootless, pour une question de sécurité)
-* Sur un terminal PowerShell on se place dedans le répertoire où se trouve le fichier « docker-compose.yml « 
-* Sur le terminal PowerShell on execute la commande « docker-compose up »
-* On peut vérifier le fonctionnement et l’intégration des micro-services avec l'application monolithique via le ThunderClient sur VSCode.   
