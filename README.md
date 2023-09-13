@@ -131,7 +131,7 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
   * Déploiement continu sur des environnements  
   * Déploiement  
 
-* Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRONO pour réaliser une mise à jour périodiquement.
+* Pour la mise en place du pipeline CI/CD nous avons utilisé Jenkins avec un CRON pour réaliser une mise à jour périodiquement.
 
 ## Le pare feu :
 * On a pas mis le pare feu dans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de Docker ( https://docs.docker.com/network/packet-filtering-firewalls/ ) c’est pas recommandable activer le pare feu UFW. 
