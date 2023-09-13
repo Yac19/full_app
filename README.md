@@ -69,10 +69,6 @@ On a choisi de créer deux micro-services:
 * 2- La gestion des mots de passe (modification de mot de passe pour chaque utilisateur).
 
 
-## Serveur Nginx:
-Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’utilisé comme **reverse proxy** (ou proxy inverse) afin de rediriger le trafic : soit vers l’application monolithique, soit vers les micro-services. Dans ce conteneur on a configurer le framework fail2ban. L’accès à l’instance OwnCloud est configuré pour se réaliser via le port 80 (HTTP), car selon la documentation ( https://doc.owncloud.com/server/10.13/admin_manual/installation/docker/ ) l'accès ne fonctionne qu'avec http, pas avec https. 
-
-
 # Feuille de route suivi
 Voici un résumé des étapes que nous avons suivies pour transformer une application monolithique en micro-services et l’intégrer de manière automatisée via pipeline CI/CD :
       	
@@ -129,7 +125,10 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
   * Build des images Docker  
   * Tests automatisés  
   * Déploiement continu sur des environnements  
-  * Déploiement  
+  * Déploiement
+
+## Serveur Nginx:
+Nous avons mis en place un conteneur Docker incluant un serveur Nginx, pour l’utilisé comme **reverse proxy** (ou proxy inverse) afin de rediriger le trafic : soit vers l’application monolithique, soit vers les micro-services. Dans ce conteneur on a configurer le framework fail2ban. L’accès à l’instance OwnCloud est configuré pour se réaliser via le port 80 (HTTP), car selon la documentation ( https://doc.owncloud.com/server/10.13/admin_manual/installation/docker/ ) l'accès ne fonctionne qu'avec http, pas avec https. 
 
 ## Le pare feu :
 * On a pas mis le pare feu dans un conteneur, car  il est généralement recommandé de configurer et de gérer le pare-feu au niveau de l'hôte. Techniquement, il est possible d'exécuter un pare-feu (firewall) dans un conteneur Docker, mais cela n'est généralement pas recommandé ni pratique. Pour une meilleur sécurisation il faut l’installer au niveau de l'hôte, par exemple via un playbook Ansible. Selon la documentation de Docker ( https://docs.docker.com/network/packet-filtering-firewalls/ ) c’est pas recommandable activer le pare feu UFW. 
