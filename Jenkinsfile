@@ -11,6 +11,7 @@ pipeline {
             OWNCLOUD_API_URL=credentials('OWNCLOUD_API_URL')
             GF_SECURITY_ADMIN_PASSWORD=credentials('GF_SECURITY_ADMIN_PASSWORD')
             SQLALCHEMY_DATABASE_URI = credentials('DATABASE_URI')
+            DATABASE_URI = credentials('DATABASE_URI')
             ADMIN_CREDENTIALS=credentials('ADMIN_CREDENTIALS')
             REDIS_URL=credentials('storage__uri')
         }
