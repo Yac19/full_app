@@ -1,4 +1,4 @@
-# Utiliser l'image "nginx" comme deuxième étape de construction
+# Utiliser l'image "nginx" 
 FROM nginx:latest
 
 # Installation de fail2ban
