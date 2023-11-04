@@ -128,6 +128,7 @@ Voici un résumé des étapes que nous avons suivies pour transformer une applic
 
 # Installation du projet
 * Créer un dossier dans lequel on installera le projet
+```bash mkdir project-B```
 * On clone le repo
 * On active le logiciel Docker (en mode rootless, pour une question de sécurité)
 * Sur un terminal PowerShell on se place dedans le répertoire où se trouve le fichier « docker-compose.yml « 
