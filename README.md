@@ -23,7 +23,7 @@ Pour réaliser ce projet on a installé sur la machine :
 * **[VScode](https://code.visualstudio.com/)**, un éditeur de code source gratuit et open source développé par Microsoft permettant de créer, éditer et déboguer du code source dans divers langages de programmation.  
 * **[Jenkins](https://www.jenkins.io/)**, un outil **d'intégration continue (CI)** et de **livraison continue (CD)** open source ayant pour objectif l'automatisation du processus de construction, de test et de déploiement des applications logicielles. 
 * **[Docker](https://www.docker.com/)**, une plateforme de **conteneurisation** qui permet d'emballer une application et ses dépendances dans un conteneur léger, isolé et portable. 
-
+* **[AWS](https://eu-west-1.console.aws.amazon.com/console/home?region=eu-west-1), notre 
 
 # L'architecture
 Voici l'architecture choisi pour mettre en place notre projet:
